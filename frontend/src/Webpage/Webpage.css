@@ -1,0 +1,21 @@
+.webpage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #F3EEEA;
+    border: 15px solid #776B5D;
+    font-size: large;
+}
+.upload{
+    font-size: 15px !important;
+    background-color: #ffffff50 !important;
+}
+
+.feature_selected{
+    width: 60vw;
+    margin-top: -10vh;
+    padding-bottom: 5vh;
+}

@@ -1,0 +1,41 @@
+.feature{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    background-color: #F3EEEA;
+    border: 15px solid #776B5D;
+    padding: 20px;
+}
+.form{
+    width: 40vw;
+    margin-top: 5vh;
+}
+.form label{
+    font-size: 15px !important;
+    margin-top: 5vh !important;
+}
+.form Button{
+    margin-top: 2vh !important;
+}
+.features{
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60vw;
+}
+.features h2{
+    text-align: center;
+}
+
+.generating{
+    left: 40vw !important;
+    top:-40vh !important;
+    font-size: 20px;
+}
+
+
+.next_feature{
+    margin-left: 40vw !important;
+}
