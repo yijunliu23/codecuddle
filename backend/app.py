@@ -76,7 +76,7 @@ def read_txt(file_path):
     return txt
 
 
-apikey = read_txt('./api_key.txt')
+apikey = "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"
 client = OpenAI(
     api_key=apikey
 )
