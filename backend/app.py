@@ -27,6 +27,8 @@ def handle_form():
     features_response = get_features(functionality, goal, page_about)
     return jsonify(features_response)
 
+# call for each one agency rules etc. 
+
 def get_features(functionality, goal, page_about):
     prompt_1 = "I have a webpage that is about" + page_about + ". And have the following gaols" + goal + "Based on the function " + \
            functionality + \

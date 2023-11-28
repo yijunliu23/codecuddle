@@ -3,8 +3,9 @@ import openai
 import json
 from json.decoder import JSONDecodeError
 import sys
+import os
 
-client = OpenAI()
+
 
 
 def read_jsx_to_string(file_path):
@@ -18,9 +19,12 @@ def read_txt(file_path):
         txt = f.read().strip()
     return txt
 
+apikey = read_txt('./api_key.txt')
+client = OpenAI(
+    api_key=apikey
+)
 
 def call_gpt4(prompt):
-    openai.api_key = read_txt('./api_key.txt')
     model_engine = "gpt-4-1106-preview"
     response = client.chat.completions.create(
         model=model_engine,
@@ -31,7 +35,6 @@ def call_gpt4(prompt):
         ]
     )
     return response.choices[0].message.content
-
 
 def call_gpt_with_retries_json(user_prompt, max_retries=3):
     retry_count = 0
