@@ -4,7 +4,7 @@ import os
 from werkzeug.utils import secure_filename
 
 
-app = Flask(__name__, static_folder='../frontend/build/static', template_folder='../frontend/build')
+app = Flask(__name__, static_folder='../build/static', template_folder='../build')
 
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
