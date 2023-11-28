@@ -3,10 +3,6 @@ import openai
 import json
 from json.decoder import JSONDecodeError
 import sys
-import os
-
-
-
 
 def read_jsx_to_string(file_path):
     with open(file_path, 'r') as file:
@@ -18,6 +14,7 @@ def read_txt(file_path):
     with open(file_path, 'r') as f:
         txt = f.read().strip()
     return txt
+
 
 apikey = read_txt('./api_key.txt')
 client = OpenAI(
