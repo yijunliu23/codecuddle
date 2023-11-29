@@ -84,6 +84,7 @@ def improve_feature():
 
 def process_file(filepath):
     filepath = "uploads/App.js"
+    time.sleep(15)
     return filepath
 
 
