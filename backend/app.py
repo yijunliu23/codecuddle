@@ -34,32 +34,11 @@ def handle_form():
 
 
 def get_features(functionality, goal, page_about):
-    # prompt_1 = "I have a webpage that is about" + page_about + ". And have the following gaols" + goal + "Based on the function " + \
-    #        functionality + \
-    #        ". I want to make the webpage more inclusive by avoiding socially akward situation. To define socially akward situations, think about like individual agencies, bridging different norms, and using nudges and enables social signaling to reduce social anxiety like anonymous. " \
-    #        "Output the top five important features in a JSON format like {\"features\":[{\"feature\":\"feature name\", \"description\":\"feature description\"}]}"
-    # response = call_gpt_with_retries_json(prompt_1)
-    response = {
-  "features": [
-    {
-      "feature": "Anonymous Availability Submission",
-      "description": "Allow users to submit their available times anonymously to ensure privacy and comfort, reducing the pressure of publicly sharing their schedules."
-    },
-    {
-      "feature": "Diverse Calendar Support",
-      "description": "Support integration with multiple calendar systems (e.g., Google Calendar, Outlook) to accommodate users from different cultural and organizational backgrounds."
-    },
-    {
-      "feature": "Soft Reminder System",
-      "description": "Implement a gentle reminder system that nudges participants to submit their availability, reducing the social burden on the organizer to chase down responses."
-    },
-    {
-      "feature": "Flexible Timezone Handling",
-      "description": "Automatically adjust for different time zones to ensure everyone can view the schedule in their local time, preventing confusion and unintentional exclusion."
-    }
-  ]
-}
-    time.sleep(10)
+    prompt_1 = "I have a webpage that is about" + page_about + ". And have the following gaols" + goal + "Based on the function " + \
+           functionality + \
+           ". I want to make the webpage more inclusive by avoiding socially akward situation. To define socially akward situations, think about like individual agencies, bridging different norms, and using nudges and enables social signaling to reduce social anxiety like anonymous. " \
+           "Output the top five important features in a JSON format like {\"features\":[{\"feature\":\"feature name\", \"description\":\"feature description\"}]}"
+    response = call_gpt_with_retries_json(prompt_1)  
 
     return response
     
@@ -83,9 +62,8 @@ def improve_feature():
         return send_file(improved_file_path, as_attachment=True)
 
 def process_file(filepath):
-    filepath = "uploads/App.js"
-    time.sleep(15)
-    return filepath
+    time.sleep(2000)
+    return None
 
 
 def read_jsx_to_string(file_path):
