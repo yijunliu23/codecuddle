@@ -13,11 +13,7 @@ export function Feature () {
         layoutDesc: ''
     });
     const initialFeatures = [
-        // { feature: 'User Authentication', description: 'Sign-up, login, and logout functionality with email verification.' },
-        // { feature: 'Profile Management', description: 'Users can create and edit their profiles, including uploading profile pictures.' },
-        // { feature: 'Dynamic Scheduling Tool', description: 'A calendasdfaar interface for scheduling A calendasdfaar interface for scheduling A calendasdfaar interface for scheduling A calendasdfaar interface for scheduling A calendasdfaar interface for scheduling A calendasdfaar interface for scheduling A calendasdfaar interface for scheduling A calendasdfaar interface for scheduling A calendasdfaar interface for scheduling .' },
-        // { feature: 'Dynamic Scheduling Tool', description: 'A calendar interface for scheduling.' },
-        // { feature: 'Dynamic Scheduling Tool', description: 'A calendar interface for scheduling.' }
+      
     ];
 
     const [features, setFeatures] = useState(initialFeatures);

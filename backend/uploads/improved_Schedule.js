@@ -5,22 +5,21 @@ const hours = Array.from({ length: 24 }, (_, index) => index);
 
 const App = () => {
   const [schedule, setSchedule] = useState({});
+import moment from 'moment';
   const [currentUser, setCurrentUser] = useState('');
   const [commonTimesMessage, setCommonTimesMessage] = useState('');
-  const [isAnonymous, setIsAnonymous] = useState(false);
 
-  const toggleAvailability = (day, hour) => {
+const toggleAvailability = (day, hour) => {
     if (!currentUser.trim()) return;
 
+    const utcHour = moment.utc().day(day).hour(hour).format();
+
     setSchedule((prevSchedule) => {
-      const daySchedule = prevSchedule[day] || {};
-      const userIdentifier = isAnonymous ? 'Anonymous' : currentUser;
-      const hourSchedule = daySchedule[hour] || [];
-      const isUserPresent = hourSchedule.some(user => user.name === currentUser);
+      const isUserPresent = hourSchedule.some(user => user === currentUser);
 
       const newHourSchedule = isUserPresent
-        ? hourSchedule.filter(user => user.name !== currentUser)
-        : [...hourSchedule, { name: currentUser, anonymous: isAnonymous }];
+        ? hourSchedule.filter(user => user !== currentUser)
+        : [...hourSchedule, currentUser];
 
       return {
         ...prevSchedule,
@@ -33,17 +32,13 @@ const App = () => {
     setCurrentUser(event.target.value);
   };
 
-  const handleChangeAnonymous = (event) => {
-    setIsAnonymous(event.currentTarget.checked);
-  };
-
   const findCommonTimes = () => {
     let allUserCounts = {};
 
     Object.values(schedule).forEach(day => {
       Object.values(day).forEach(hour => {
         hour.forEach(user => {
-          allUserCounts[user.name] = (allUserCounts[user.name] || 0) + 1;
+          allUserCounts[user] = (allUserCounts[user] || 0) + 1;
         });
       });
     });
@@ -54,7 +49,7 @@ const App = () => {
     for (let day of days) {
       for (let hour of hours) {
         let hourSchedule = schedule[day]?.[hour];
-        if (hourSchedule && allUsers.every(user => hourSchedule.some(u => u.name === user))) {
+        if (hourSchedule && allUsers.every(user => hourSchedule.includes(user))) {
           commonTimes.push(`${day} at ${hour}:00`);
         }
       }
@@ -75,13 +70,6 @@ const App = () => {
         value={currentUser}
         onChange={handleChangeUser}
       />
-      <label>
-        <input
-          type="checkbox"
-          checked={isAnonymous}
-          onChange={handleChangeAnonymous}
-        /> Be Anonymous
-      </label>
       <button onClick={findCommonTimes}>Find Common Available Times</button>
       <div>{commonTimesMessage}</div>
       <table style={{ width: '100%', borderCollapse: 'collapse' }}>
@@ -102,12 +90,12 @@ const App = () => {
                   key={day}
                   style={{
                     border: '1px solid black',
-                    background: schedule[day]?.[hour]?.some(user => user.name === currentUser) ? 'lightgreen' : 'none',
+                    background: schedule[day]?.[hour]?.includes(currentUser) ? 'lightgreen' : 'none',
                     cursor: 'pointer',
                   }}
                   onClick={() => toggleAvailability(day, hour)}
                 >
-                  {schedule[day]?.[hour]?.filter(user => !user.anonymous).map(user => user.name).join(', ') || (schedule[day]?.[hour]?.length > 0 ? 'Anonymous' : '')}
+                  {schedule[day]?.[hour]?.join(', ') || ''}
                 </td>
               ))}
             </tr>
